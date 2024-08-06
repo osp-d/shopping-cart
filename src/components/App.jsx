@@ -1,7 +1,13 @@
-import '../styles/App.css';
+import Navbar from './Navbar';
+import Home from './Home';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Navbar />
+      <Home />
+    </>
+  );
 }
 
 export default App;
