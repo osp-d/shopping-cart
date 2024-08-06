@@ -1,5 +1,5 @@
 import { ShoppingBag } from 'lucide-react';
-import styles from '../styles/Navbar.module.css';
+import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
