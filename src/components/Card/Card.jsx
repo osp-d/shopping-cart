@@ -1,9 +1,14 @@
-function Card(title, price) {
+import styles from './Card.module.css';
+
+function Card({ title, price }) {
   return (
-    <div>
-      <p>{title}</p>
-      <p>{price}</p>
-      <div>Add to shopping cart</div>
+    <div className={styles.card}>
+      <p>Image</p>
+      <div>
+        <p>{title}</p>
+        <p>{price}</p>
+        <div>Add to shopping cart</div>
+      </div>
     </div>
   );
 }

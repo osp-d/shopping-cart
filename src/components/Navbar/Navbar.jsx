@@ -6,16 +6,22 @@ function Navbar() {
   return (
     <div className={styles.navbar}>
       <div className={styles.sections}>
-        <p>Shop Name</p>
+        <Link to="/" className={styles.link}>
+          Shop Name{' '}
+        </Link>
 
         <>
-          <Link to="/">Home</Link>
-          <Link to="shop">Shop</Link>
+          <Link to="/" className={styles.link}>
+            Home
+          </Link>
+          <Link to="shop" className={styles.link}>
+            Shop
+          </Link>
         </>
       </div>
 
       <div>
-        <Link to="cart">
+        <Link to="cart" className={styles.link}>
           <ShoppingBag size={24} />
         </Link>
       </div>

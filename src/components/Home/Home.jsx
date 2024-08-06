@@ -6,7 +6,9 @@ function Home() {
     <div className={styles.home}>
       <h1>Welcome to our shop</h1>
       <p>Discover a wide collection of various products</p>
-      <Link to="shop">Shop now</Link>
+      <Link to="shop" className={styles.cta}>
+        Shop now
+      </Link>
     </div>
   );
 }
