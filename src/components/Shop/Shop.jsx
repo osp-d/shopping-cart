@@ -1,22 +1,21 @@
 import Card from '../Card/Card.jsx';
 import styles from './Shop.module.css';
-import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 function Shop() {
-  let tempData = [];
-
-  for (let i = 0; i < 10; i++) {
-    tempData.push({ title: `product-${i}`, price: `$${i + 1}` });
-  }
-
-  const [products, setProducts] = useState(tempData);
+  const products = useOutletContext();
 
   return (
     <div className={styles.shop}>
       <div className={styles.content}>
-        {products.map((product, index) => {
+        {products.map((product) => {
           return (
-            <Card title={product.title} price={product.price} key={index} />
+            <Card
+              title={product.title}
+              price={product.price}
+              key={product.id}
+              image={product.image}
+            />
           );
         })}
       </div>
