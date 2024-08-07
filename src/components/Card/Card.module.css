@@ -31,3 +31,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.link {
+  composes: link from '../../css/index.css';
+}
+
+.selected {
+  composes: selected from '../../css/index.css';
+}

@@ -1,15 +1,43 @@
 import { ShoppingBag } from 'lucide-react';
 import styles from './Card.module.css';
+import { useOutletContext } from 'react-router-dom';
+import { useState } from 'react';
 
-function Card({ title, price, image }) {
+function Card({ product, inCart }) {
+  const { cart, setCart } = useOutletContext();
+  const [selection, setSelection] = useState(inCart);
+
+  const toggleSelection = () => {
+    if (selection === false) {
+      const newCart = [...cart];
+      newCart.push({ ...product, quantity: 1 });
+      setSelection(true);
+      setCart(newCart);
+    } else {
+      const newCart = cart.filter((e) => e.id !== product.id);
+      setSelection(false);
+      setCart(newCart);
+    }
+  };
+
   return (
     <div className={styles.card}>
-      <img src={image} className={styles.image} />
+      <img src={product.image} className={styles.image} />
       <div>
-        <p className={styles.text}>{title}</p>
+        <p className={styles.text}>{product.title}</p>
         <div className={styles.ctaWrapper}>
-          <p className={styles.priceText}>{`$${price}`}</p>
-          <ShoppingBag></ShoppingBag>
+          <p className={styles.priceText}>{`$${product.price}`}</p>
+          {selection ? (
+            <ShoppingBag
+              className={styles.selected}
+              onClick={() => toggleSelection()}
+            ></ShoppingBag>
+          ) : (
+            <ShoppingBag
+              className={styles.link}
+              onClick={() => toggleSelection()}
+            ></ShoppingBag>
+          )}
         </div>
       </div>
     </div>

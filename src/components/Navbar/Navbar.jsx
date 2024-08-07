@@ -2,7 +2,7 @@ import { ShoppingBag } from 'lucide-react';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ cartLength }) {
   return (
     <div className={styles.navbar}>
       <div className={styles.sections}>
@@ -20,11 +20,10 @@ function Navbar() {
         </>
       </div>
 
-      <div>
-        <Link to="cart" className={styles.link}>
-          <ShoppingBag size={24} />
-        </Link>
-      </div>
+      <Link to="cart" className={styles.cartIcon}>
+        <ShoppingBag size={24} />
+        <div className={styles.counter}>{cartLength}</div>
+      </Link>
     </div>
   );
 }

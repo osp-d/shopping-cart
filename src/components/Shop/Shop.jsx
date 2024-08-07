@@ -3,20 +3,17 @@ import styles from './Shop.module.css';
 import { useOutletContext } from 'react-router-dom';
 
 function Shop() {
-  const products = useOutletContext();
+  const { products, cart } = useOutletContext();
 
   return (
     <div className={styles.shop}>
       <div className={styles.content}>
         {products.map((product) => {
-          return (
-            <Card
-              title={product.title}
-              price={product.price}
-              key={product.id}
-              image={product.image}
-            />
-          );
+          if (cart.some((e) => e.id === product.id)) {
+            return <Card key={product.id} product={product} inCart={true} />;
+          } else {
+            return <Card key={product.id} product={product} inCart={false} />;
+          }
         })}
       </div>
     </div>

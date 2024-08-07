@@ -14,7 +14,20 @@
 }
 
 .link {
-  text-decoration: none;
-  text-align: center;
-  color: black;
+  composes: link from '../../css/index.css';
+}
+
+.cartIcon {
+  composes: link;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  background-color: black;
+  color: white;
+  border-radius: 100px;
+  padding: 2px 8px 2px 8px;
 }
