@@ -1,0 +1,51 @@
+.sectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: left;
+  padding: 0 48px 0 48px;
+}
+
+.sectionTitle {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0px;
+}
+
+.itemListWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+
+  width: min(240px);
+  padding: 24px;
+
+  div.separator {
+    height: 1px;
+    background-color: rgb(210, 210, 210);
+    border-radius: 2px;
+  }
+
+  .summaryTitle {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .cta {
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    padding: 8px 16px 8px 16px;
+    border-radius: 16px;
+  }
+}
