@@ -1,7 +1,10 @@
 import { Trash2 } from 'lucide-react';
 import styles from './CartItem.module.css';
+import { useOutletContext } from 'react-router-dom';
 
-function CartItem({ product, deleteItem, cartItems, changeItemQuantity }) {
+function CartItem({ product }) {
+  const { cart, setCart } = useOutletContext();
+
   return (
     <div className={styles.cartItem}>
       <img className={styles.image} src={product.image} />
@@ -12,7 +15,7 @@ function CartItem({ product, deleteItem, cartItems, changeItemQuantity }) {
         min={1}
         className={styles.quantity}
         onChange={(event) => {
-          const newCartItems = cartItems.map((item) => {
+          const newCart = cart.map((item) => {
             if (item.id === product.id) {
               const newItem = { ...item };
               newItem.quantity = +event.target.value;
@@ -22,15 +25,13 @@ function CartItem({ product, deleteItem, cartItems, changeItemQuantity }) {
             return item;
           });
 
-          changeItemQuantity(newCartItems);
+          setCart(newCart);
         }}
       />
       <Trash2
         onClick={() => {
-          deleteItem();
-
-          const newCartItems = cartItems.filter((e) => e.id !== product.id);
-          changeItemQuantity(newCartItems);
+          const newCart = cart.filter((e) => e.id !== product.id);
+          setCart(newCart);
         }}
       ></Trash2>
       <p className={styles.priceText}>{`$${

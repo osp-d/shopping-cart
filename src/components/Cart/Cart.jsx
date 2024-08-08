@@ -1,16 +1,11 @@
 import { useOutletContext } from 'react-router-dom';
 import CartItem from './CartItem';
 import styles from './Cart.module.css';
-import { useState } from 'react';
 
 function Cart() {
-  const { cart, setCart } = useOutletContext();
+  const { cart } = useOutletContext();
 
-  console.log(cart);
-
-  const [cartItems, setCartItems] = useState(cart);
-
-  let overallPrice = cartItems.reduce(
+  let overallPrice = cart.reduce(
     (accumulator, product) => accumulator + product.price * product.quantity,
     0
   );
@@ -20,17 +15,11 @@ function Cart() {
       <p className={styles.sectionTitle}>Shopping Cart</p>
       <div className={styles.itemListWrapper}>
         <div className={styles.itemList}>
-          {cartItems.map((product) => {
+          {cart.map((product) => {
             return (
               <CartItem
                 key={product.id}
                 product={product}
-                deleteItem={() => {
-                  const newCart = cart.filter((e) => e.id !== product.id);
-                  setCart(newCart);
-                }}
-                cartItems={cartItems}
-                changeItemQuantity={(event) => setCartItems(event)}
                 overallPrice={overallPrice}
               />
             );
