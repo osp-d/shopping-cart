@@ -27,11 +27,23 @@ function Cart() {
         </div>
         <div className={styles.total}>
           <p className={styles.summaryTitle}>Order Summary</p>
-          <p>Subtotal</p>
-          <p>VAT</p>
-          <p>Delivery</p>
+          <span className={styles.indicator}>
+            <p>Subtotal</p>
+            <p>{`$${overallPrice}`}</p>
+          </span>
+          <span className={styles.indicator}>
+            <p>VAT</p>
+            <p>{`$${overallPrice * 0.14}`}</p>
+          </span>
+          <span className={styles.indicator}>
+            <p>Delivery</p>
+            <p>$5</p>
+          </span>
           <div className={styles.separator}></div>
-          <p>{`Total: ${overallPrice}`}</p>
+          <span className={styles.totalPrice}>
+            <p>Total</p>
+            <p>{`$${overallPrice + overallPrice * 0.14 + 5}`}</p>
+          </span>
           <button className={styles.cta}>Checkout</button>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { ShoppingBag } from 'lucide-react';
-import styles from './Card.module.css';
+import styles from './Product.module.css';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
-function Card({ product, inCart }) {
+function Product({ product, inCart }) {
   const { cart, setCart } = useOutletContext();
   const [selection, setSelection] = useState(inCart);
 
@@ -21,7 +21,7 @@ function Card({ product, inCart }) {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.product}>
       <img src={product.image} className={styles.image} />
       <div>
         <p className={styles.text}>{product.title}</p>
@@ -44,4 +44,4 @@ function Card({ product, inCart }) {
   );
 }
 
-export default Card;
+export default Product;
