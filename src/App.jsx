@@ -5,7 +5,10 @@ import useProductsData from './hooks/useProductsData.jsx';
 import { useState } from 'react';
 
 function App() {
-  const products = useProductsData();
+  const data = useProductsData();
+  const products = data.map((item) => {
+    return { ...item, quantity: 1 };
+  });
 
   return <AppContentWrapper products={products} />;
 }
