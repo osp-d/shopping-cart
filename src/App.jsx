@@ -5,8 +5,13 @@ import useProductsData from './hooks/useProductsData.jsx';
 import { useState } from 'react';
 
 function App() {
-  const [cart, setCart] = useState([]);
   const products = useProductsData();
+
+  return <AppContentWrapper products={products} />;
+}
+
+function AppContentWrapper({ products }) {
+  const [cart, setCart] = useState([]);
 
   return (
     <div className="app">

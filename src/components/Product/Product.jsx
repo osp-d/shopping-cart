@@ -1,11 +1,12 @@
 import { ShoppingBag } from 'lucide-react';
 import styles from './Product.module.css';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
 function Product({ product, inCart }) {
   const { cart, setCart } = useOutletContext();
   const [selection, setSelection] = useState(inCart);
+  const navigate = useNavigate();
 
   const toggleSelection = () => {
     if (selection === false) {
@@ -21,7 +22,10 @@ function Product({ product, inCart }) {
   };
 
   return (
-    <div className={styles.product}>
+    <div
+      className={styles.product}
+      onClick={() => navigate(`${product.id}`, { state: product })}
+    >
       <img src={product.image} className={styles.image} />
       <div>
         <p className={styles.text}>{product.title}</p>
@@ -30,12 +34,18 @@ function Product({ product, inCart }) {
           {selection ? (
             <ShoppingBag
               className={styles.selected}
-              onClick={() => toggleSelection()}
+              onClick={(event) => {
+                event.stopPropagation();
+                toggleSelection();
+              }}
             ></ShoppingBag>
           ) : (
             <ShoppingBag
               className={styles.link}
-              onClick={() => toggleSelection()}
+              onClick={(event) => {
+                event.stopPropagation();
+                toggleSelection();
+              }}
             ></ShoppingBag>
           )}
         </div>
