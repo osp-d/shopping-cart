@@ -4,7 +4,6 @@ import {
   useOutletContext,
   useNavigate,
 } from 'react-router-dom';
-import styles from './ProductItem.module.css';
 import { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 
@@ -46,21 +45,21 @@ function ProductItem() {
   };
 
   return (
-    <div className={styles.productItemWrapper}>
-      <ArrowLeft className={styles.link} onClick={() => navigate(-1)} />
-      <div className={styles.productItem}>
-        <img src={product.image} className={styles.image} />
+    <div className="flex flex-col gap-6 px-12">
+      <ArrowLeft className="link" onClick={() => navigate(-1)} />
+      <div className="flex gap-12">
+        <img src={product.image} className="h-48" />
 
-        <div className={styles.productInfo}>
-          <p className={styles.title}>{product.title}</p>
-          <span className={styles.price}>${product.price * num}</span>
+        <div className="flex flex-col gap-3">
+          <p className="text-xl font-bold">{product.title}</p>
+          <span className="font-bold">${product.price * num}</span>
 
           <input
             type="number"
             defaultValue={num}
             key={num}
             min={1}
-            className={styles.quantity}
+            className="max-w-28"
             onChange={(event) => {
               if (selection) {
                 const newCart = cart.map((item) => {
@@ -84,13 +83,16 @@ function ProductItem() {
           />
 
           <p>{product.description}</p>
-          <button className={styles.ctaBuy} onClick={() => navigate('/cart')}>
+          <button
+            className="max-w-60 rounded-full bg-black px-6 py-3 text-white hover:bg-gray-700"
+            onClick={() => navigate('/cart')}
+          >
             Buy now
           </button>
 
           {selection ? (
             <button
-              className={styles.ctaAdd}
+              className="max-w-60 rounded-full border-2 border-solid border-gray-300 bg-white px-6 py-3 text-black hover:bg-gray-300"
               onClick={() => {
                 setNum(1);
                 toggleSelection();
@@ -99,7 +101,10 @@ function ProductItem() {
               Remove from cart
             </button>
           ) : (
-            <button className={styles.ctaAdd} onClick={() => toggleSelection()}>
+            <button
+              className="max-w-60 rounded-full border-2 border-solid border-gray-300 bg-white px-6 py-3 text-black hover:bg-gray-300"
+              onClick={() => toggleSelection()}
+            >
               Add to cart
             </button>
           )}

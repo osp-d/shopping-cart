@@ -1,5 +1,4 @@
 import { ShoppingBag } from 'lucide-react';
-import styles from './Product.module.css';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -23,17 +22,17 @@ function Product({ product, inCart }) {
 
   return (
     <div
-      className={styles.product}
+      className="flex h-fit flex-col justify-between gap-3 rounded-lg border-2 border-solid border-gray-200 p-3 shadow-sm"
       onClick={() => navigate(`${product.id}`, { state: product })}
     >
-      <img src={product.image} className={styles.image} />
+      <img src={product.image} className="h-20 object-contain" />
       <div>
-        <p className={styles.text}>{product.title}</p>
-        <div className={styles.ctaWrapper}>
-          <p className={styles.priceText}>{`$${product.price}`}</p>
+        <p className="inline-flex h-22.5 overflow-hidden">{product.title}</p>
+        <div className="flex items-center justify-between">
+          <p className="font-bold">{`$${product.price}`}</p>
           {selection ? (
             <ShoppingBag
-              className={styles.selected}
+              className="selected"
               onClick={(event) => {
                 event.stopPropagation();
                 toggleSelection();
@@ -41,7 +40,7 @@ function Product({ product, inCart }) {
             ></ShoppingBag>
           ) : (
             <ShoppingBag
-              className={styles.link}
+              className="link"
               onClick={(event) => {
                 event.stopPropagation();
                 toggleSelection();

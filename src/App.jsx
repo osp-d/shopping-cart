@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar/Navbar.jsx';
 import { Outlet } from 'react-router-dom';
-import './css/app.css';
 import useProductsData from './hooks/useProductsData.jsx';
 import { useState } from 'react';
 
@@ -17,7 +16,7 @@ function AppContentWrapper({ products }) {
   const [cart, setCart] = useState([]);
 
   return (
-    <div className="app">
+    <div className="flex flex-col gap-12">
       <Navbar cartLength={cart.length} />
       <Outlet context={{ products, cart, setCart }} />
     </div>

@@ -1,19 +1,18 @@
 import { Trash2 } from 'lucide-react';
-import styles from './CartItem.module.css';
 import { useOutletContext } from 'react-router-dom';
 
 function CartItem({ product }) {
   const { cart, setCart } = useOutletContext();
 
   return (
-    <div className={styles.cartItem}>
-      <img className={styles.image} src={product.image} />
-      <p className={styles.title}>{product.title}</p>
+    <div className="flex items-center gap-8">
+      <img className="h-20 object-contain" src={product.image} />
+      <p className="w-80">{product.title}</p>
       <input
         type="number"
         defaultValue={product.quantity}
         min={1}
-        className={styles.quantity}
+        className="w-20"
         onChange={(event) => {
           const newCart = cart.map((item) => {
             if (item.id === product.id) {
@@ -34,9 +33,7 @@ function CartItem({ product }) {
           setCart(newCart);
         }}
       ></Trash2>
-      <p className={styles.priceText}>{`$${
-        product.quantity * product.price
-      }`}</p>
+      <p className="font-bold">{`$${product.quantity * product.price}`}</p>
     </div>
   );
 }
